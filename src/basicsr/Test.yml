@@ -1,0 +1,45 @@
+# Modified from BasicSR (https://github.com/xinntao/BasicSR)
+name: LDR
+model_type: ImageRestorationModel
+scale: 1
+num_gpu: 1
+manual_seed: 10
+
+datasets:
+  test:
+    name: all-test
+    type: PairedImageDataset
+    dataroot_gt: ../dataset\testrd\target
+    dataroot_lq: ../dataset\testrd\input
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: LDR
+
+
+# validation settings
+val:
+  save_img: true
+  grids: true
+  crop_size: 256
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+    ssim:
+      type: calculate_ssim
+      crop_border: 0
+      test_y_channel: false
+
+path:
+  pretrain_network_g: model.pth
+  strict_load_g: true
+  resume_state: ~
+
+#12E top4
+
+  
