@@ -1,11 +1,12 @@
+import sys
+sys.path.append(r"XX")#add your root dir
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from einops import rearrange
 from module import Attention_C,MEAB
-# import sys
-# sys.path.append("")
-#root dir
+
+
 
 class BasicConv(nn.Module):
     def __init__(self, in_channel, out_channel, kernel_size, stride, bias=True, norm=False, relu=True, transpose=False):
